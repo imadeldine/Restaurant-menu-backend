@@ -5,7 +5,7 @@ import cors from "cors";
 import upload from "./Server/middlewares/upload.js";
 import User from "./Server/Routes/UserRoute.js";
 import Item from "./Server/Routes/ItemRoute.js";
-import Categorie from "./Server/Routes/CategorieRoute.js";
+import Category from "./Server/routes/CategoryRoute.js";
 
 
 const app = express();
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 app.use("/api/users", User);
 app.use("/api/items", upload.single("image"), Item);
-app.use("/api/categories", upload.single("image"), Categorie);
+app.use("/api/categories", upload.single("image"), Category);
 // app.use("/api/items", Item);
 
 

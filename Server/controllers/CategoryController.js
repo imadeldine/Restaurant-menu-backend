@@ -1,7 +1,7 @@
-import Categories from "../models/CategorieModel.js";
+import Categories from "../models/CategoryModel.js";
 
-class CategorieController {
-    async getCategorie(req, res) {
+class CategoryController {
+    async getCategory(req, res) {
         try {
         const categories = await Categories.find();
         return res.status(200).json({
@@ -20,13 +20,13 @@ class CategorieController {
         }
     }
     
-    async createCategorie(req, res) {
+    async createCategory(req, res) {
         const { name } = req.body;
         try {
-        const categorie = await Categories.findOne({
+        const category = await Categories.findOne({
             name,
         });
-        if (categorie) {
+        if (category) {
             return res.status(400).json({
             status: 400,
             success: false,
@@ -61,16 +61,16 @@ class CategorieController {
         }
     }
 
-    async updateCategorie(req, res) {
+    async updateCategory(req, res) {
         const { id } = req.params;
         const { name } = req.body;
         try {
-        const categorie = await Categories.findById(id);
-        if (!categorie) {
+        const category = await Categories.findById(id);
+        if (!category) {
             return res.status(404).json({
             status: 404,
             success: false,
-            message: `Categorie with id ${id} not found`,
+            message: `Category with id ${id} not found`,
             });
         }
         categorie.name = name;
@@ -78,7 +78,7 @@ class CategorieController {
         return res.status(200).json({
             status: 200,
             success: true,
-            data: categorie,
+            data: category,
         });
         } catch (error) {
         console.log(error);
@@ -90,22 +90,22 @@ class CategorieController {
         }
     }
 
-    async deleteCategorie(req, res) {
+    async deleteCategory(req, res) {
         const { id } = req.params;
         try {
-        const categorie = await Categories.findById(id);
-        if (!categorie) {
+        const category = await Categories.findById(id);
+        if (!category) {
             return res.status(404).json({
             status: 404,
             success: false,
-            message: "Categorie not found",
+            message: "Category not found",
             });
         }
-        await categorie.remove();
+        await category.remove();
         return res.status(200).json({
             status: 200,
             success: true,
-            message: "Categorie deleted",
+            message: "Category deleted",
         });
         } catch (error) {
         console.log(error);
@@ -118,4 +118,4 @@ class CategorieController {
     }
 }
 
-export default new CategorieController();
+export default new CategoryController();

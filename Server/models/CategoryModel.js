@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const categorieSchema = mongoose.Schema({
+const categorySchema = mongoose.Schema({
     name: {
         type: String,
         required: [true, "Please enter categorie name"],
@@ -11,5 +11,5 @@ const categorieSchema = mongoose.Schema({
     },
 });
 
-const Categories = mongoose.model("categories", categorieSchema);
+const Categories = mongoose.model("categories", categorySchema);
 export default Categories;
