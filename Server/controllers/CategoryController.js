@@ -36,14 +36,6 @@ class CategoryController {
         const result = new Categories({
             name,
         });
-        if (req.file.length === 0) {
-            return res.status(400).json({
-            status: 400,
-            success: false,
-            message: "Please select an image to upload",
-            });
-        }
-        result.image = req.file.path;
         await result.save();
         return res.status(201).json({
             status: 201,
@@ -73,8 +65,8 @@ class CategoryController {
             message: `Category with id ${id} not found`,
             });
         }
-        categorie.name = name;
-        await categorie.save();
+        category.name = name;
+        await category.save();
         return res.status(200).json({
             status: 200,
             success: true,
